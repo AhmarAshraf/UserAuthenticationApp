@@ -16,8 +16,7 @@ import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { colors } from '../constants/colors';
 import { RootStackParamList } from '../types';
-import Toast from 'react-native-toast-message';
-import { showToast } from '../service/ToastService';
+import { showToast } from '../utils/ToastService';
 
 type LoginScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
@@ -48,7 +47,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
       });
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Login failed';
-  showToast('error', { text1: 'Login Failed', text2: err instanceof Error ? err.message : 'Login failed' });
+  showToast('error', { text1: 'Login Failed', text2: message});
 
     } finally {
       setLoading(false);

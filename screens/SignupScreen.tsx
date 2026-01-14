@@ -9,7 +9,6 @@ import {
   Platform,
   ScrollView
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/Button';
@@ -17,8 +16,7 @@ import { Input } from '../components/Input';
 import { colors } from '../constants/colors';
 import { RootStackParamList } from '../types';
 import AppHeader from '../components/AppHeader';
-import Toast from 'react-native-toast-message';
-import { showToast } from '../service/ToastService';
+import { showToast } from '../utils/ToastService';
 
 type SignupScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Signup'>;
