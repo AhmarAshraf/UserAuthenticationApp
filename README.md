@@ -8,7 +8,7 @@ First things first, make sure you have your React Native environment set up. If 
 Note: please use node version v20.20.0 (npm v10.8.2)
 
 ### Installation
-i
+
 First, install the base dependencies:
 
 ```bash
