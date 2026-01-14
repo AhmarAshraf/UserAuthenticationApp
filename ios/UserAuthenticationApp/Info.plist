@@ -43,6 +43,11 @@
 	<array>
 		<string>arm64</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Ionicons.ttf</string>
+		<!-- Add other font files if you use them -->
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

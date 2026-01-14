@@ -1,97 +1,114 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native Auth App
 
-# Getting Started
+A beautiful authentication app built with React Native featuring login, signup, and user profile screens.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Getting Started
 
-## Step 1: Start Metro
+First things first, make sure you have your React Native environment set up. If not, check out the official docs.
+Note: please use node version v20.20.0 (npm v10.8.2)
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### Installation
+i
+First, install the base dependencies:
 
-To start the Metro dev server, run the following command from the root of your React Native project:
-
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+```bash
+npm install
 ```
 
-## Step 2: Build and run your app
+Then add the required packages:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+npm install @react-navigation/native @react-navigation/native-stack react-native-screens react-native-safe-area-context @react-native-async-storage/async-storage react-native-vector-icons
 ```
 
-### iOS
+For iOS, install pods (make sure you're in the project root):
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+cd ios && pod install && cd ..
 ```
 
-Then, and every time you update your native dependencies, run:
+If you get any errors, try cleaning and reinstalling:
 
-```sh
-bundle exec pod install
+```bash
+rm -rf node_modules package-lock.json
+npm install
+cd ios && rm -rf Pods Podfile.lock && pod install && cd ..
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Setting up Vector Icons
 
-```sh
-# Using npm
+For Android, add this to `android/app/build.gradle`:
+
+```gradle
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+```
+
+For iOS, the pods should handle it automatically.
+
+### Running the App
+
+For iOS:
+
+```bash
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+For Android:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```bash
+npm run android
+```
 
-## Step 3: Modify your app
+## Project Structure
 
-Now that you have successfully run the app, let's make changes!
+```
+src/
+├── components/
+│   └── Button.tsx
+├── constants/
+│   └── colors.ts
+├── context/
+│   └── AuthContext.tsx
+├── navigation/
+│   └── AppNavigator.tsx
+├── screens/
+│   ├── LoginScreen.tsx
+│   ├── SignupScreen.tsx
+│   └── HomeScreen.tsx
+├── types.ts
+└── App.tsx
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Features
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+- Clean, modern UI with smooth animations
+- Secure authentication flow
+- Form validation
+- Local storage for user data
+- Password visibility toggle
+- Error handling with user-friendly messages
+- Responsive design
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## How It Works
 
-## Congratulations! :tada:
+The app uses AsyncStorage to store user credentials locally. When you sign up, your info gets saved. When you log in, it checks your credentials against what's stored. Super simple, but remember this is just for demo purposes - you'd want a real backend for production.
 
-You've successfully run and modified your React Native App. :partying_face:
+## Tech Stack
 
-### Now what?
+- React Native
+- TypeScript
+- React Navigation
+- AsyncStorage
+- React Native Vector Icons
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
 
-# Troubleshooting
+## Troubleshooting
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+If you run into issues:
 
-# Learn More
+1. Clear Metro bundler cache: `npm start -- --reset-cache`
+2. Clean build folders for iOS: `cd ios && xcodebuild clean && cd ..`
+3. Clean build for Android: `cd android && ./gradlew clean && cd ..`
+4. Reinstall pods: `cd ios && rm -rf Pods Podfile.lock && pod install && cd ..`
+5. Full clean: `rm -rf node_modules package-lock.json && npm install`
 
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
