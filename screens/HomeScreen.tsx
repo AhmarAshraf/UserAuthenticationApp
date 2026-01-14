@@ -4,10 +4,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/Button';
 import { colors } from '../constants/colors';
-import Toast from 'react-native-toast-message';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
+import { showToast } from '../utils/ToastService';
 
 export const HomeScreen: React.FC = () => {
   const { user, logout } = useAuth();
@@ -17,18 +17,13 @@ export const HomeScreen: React.FC = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      Toast.show({
-        type: 'success',
+      showToast('success', {
         text1: 'Logged out',
         text2: 'You have successfully logged out.'
       });
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Login' }]
-      });
+      navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
     } catch (err) {
-      Toast.show({
-        type: 'error',
+      showToast('error', {
         text1: 'Logout failed',
         text2: err instanceof Error ? err.message : 'Something went wrong'
       });
@@ -107,19 +102,9 @@ export const HomeScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background
-  },
-  content: {
-    flex: 1,
-    padding: 24
-  },
-  header: {
-    marginTop: 20,
-    marginBottom: 40,
-    alignItems: 'center'
-  },
+  container: { flex: 1, backgroundColor: colors.background },
+  content: { flex: 1, padding: 24 },
+  header: { marginTop: 20, marginBottom: 40, alignItems: 'center' },
   avatarContainer: {
     width: 100,
     height: 100,
@@ -131,16 +116,8 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: colors.primary
   },
-  greeting: {
-    fontSize: 20,
-    color: colors.textSecondary,
-    marginBottom: 4
-  },
-  name: {
-    fontSize: 32,
-    fontWeight: '700',
-    color: colors.text
-  },
+  greeting: { fontSize: 20, color: colors.textSecondary, marginBottom: 4 },
+  name: { fontSize: 32, fontWeight: '700', color: colors.text },
   card: {
     backgroundColor: colors.card,
     borderRadius: 20,
@@ -151,22 +128,14 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 5
   },
-  cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24
-  },
+  cardHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 24 },
   cardTitle: {
     fontSize: 18,
     fontWeight: '600',
     color: colors.textSecondary,
     marginLeft: 12
   },
-  infoRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 16
-  },
+  infoRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 16 },
   infoIconContainer: {
     width: 40,
     height: 40,
@@ -176,26 +145,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 16
   },
-  infoContent: {
-    flex: 1
-  },
-  label: {
-    fontSize: 13,
-    color: colors.textSecondary,
-    marginBottom: 4
-  },
-  value: {
-    fontSize: 16,
-    color: colors.text,
-    fontWeight: '500'
-  },
-  divider: {
-    height: 1,
-    backgroundColor: colors.border,
-    marginVertical: 8
-  },
-  buttonContainer: {
-    marginTop: 40,
-    alignItems: 'center'
-  }
+  infoContent: { flex: 1 },
+  label: { fontSize: 13, color: colors.textSecondary, marginBottom: 4 },
+  value: { fontSize: 16, color: colors.text, fontWeight: '500' },
+  divider: { height: 1, backgroundColor: colors.border, marginVertical: 8 },
+  buttonContainer: { marginTop: 40, alignItems: 'center' }
 });
