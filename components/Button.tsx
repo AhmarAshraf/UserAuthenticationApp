@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 8,
     paddingHorizontal: 20,
-    width: '100%', // full width
+    width: '100%',
     shadowColor: colors.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

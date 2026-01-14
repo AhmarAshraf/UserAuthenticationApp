@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   View,
@@ -8,7 +7,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
+  ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -38,14 +37,14 @@ export const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
     try {
       await signup(name, email, password);
       Toast.show({
-      type: 'success',
-      text1: 'Account created!',
-      text2: 'You have successfully signed up.',
-    });
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Home' }], 
-    });
+        type: 'success',
+        text1: 'Account created!',
+        text2: 'You have successfully signed up.'
+      });
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Home' }]
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Signup failed');
     } finally {
@@ -55,12 +54,12 @@ export const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-     <AppHeader title="Profile" showBack/>
+      <AppHeader title="Profile" showBack />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardView}
       >
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={styles.scrollContent}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
@@ -109,7 +108,11 @@ export const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
 
               {error && (
                 <View style={styles.errorContainer}>
-                  <Icon name="alert-circle-outline" size={20} color={colors.error} />
+                  <Icon
+                    name="alert-circle-outline"
+                    size={20}
+                    color={colors.error}
+                  />
                   <Text style={styles.errorText}>{error}</Text>
                 </View>
               )}
@@ -138,35 +141,35 @@ export const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.background
   },
   keyboardView: {
-    flex: 1,
+    flex: 1
   },
   scrollContent: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   content: {
     flex: 1,
     justifyContent: 'center',
-    padding: 24,
+    padding: 24
   },
   header: {
-    marginBottom: 40,
+    marginBottom: 40
   },
   title: {
     fontSize: 36,
     fontWeight: '700',
     color: colors.text,
-    marginBottom: 8,
+    marginBottom: 8
   },
   subtitle: {
     fontSize: 16,
     color: colors.textSecondary,
-    fontWeight: '400',
+    fontWeight: '400'
   },
   form: {
-    width: '100%',
+    width: '100%'
   },
   errorContainer: {
     flexDirection: 'row',
@@ -174,27 +177,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#FEE2E2',
     padding: 12,
     borderRadius: 12,
-    marginBottom: 16,
+    marginBottom: 16
   },
   errorText: {
     color: colors.error,
     fontSize: 14,
     marginLeft: 8,
     fontWeight: '500',
-    flex: 1,
+    flex: 1
   },
   footer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 24,
+    marginTop: 24
   },
   footerText: {
     fontSize: 15,
-    color: colors.textSecondary,
+    color: colors.textSecondary
   },
   linkText: {
     fontSize: 15,
     color: colors.primary,
-    fontWeight: '600',
-  },
+    fontWeight: '600'
+  }
 });
