@@ -33,7 +33,7 @@ export const Button: React.FC<ButtonProps> = ({
       ]}
       onPress={onPress}
       disabled={isDisabled}
-      activeOpacity={0.7} // smoother tap effect
+      activeOpacity={0.7} 
     >
       {loading ? (
         <ActivityIndicator color={variant === 'outline' ? colors.primary : colors.card} />
