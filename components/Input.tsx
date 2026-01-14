@@ -79,13 +79,6 @@ export const Input: React.FC<InputProps> = ({
           </TouchableOpacity>
         )}
       </View>
-
-      {error && (
-        <View style={styles.errorContainer}>
-          <Icon name="alert-circle-outline" size={16} color={colors.error} />
-          <Text style={styles.errorText}>{error}</Text>
-        </View>
-      )}
     </View>
   );
 };
