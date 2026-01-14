@@ -1,6 +1,6 @@
 # React Native Auth App
 
-A beautiful authentication app built with React Native featuring login, signup, and user profile screens.
+A authentication app built with React Native featuring login, signup, and user profile screens.
 
 ## Getting Started
 
