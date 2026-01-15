@@ -1,13 +1,15 @@
 # React Native Auth App
 
-A authentication app built with React Native featuring login, signup, and user profile screens.
+A clean authentication app built with React Native featuring login, signup, and user profile screens with form validation and secure local storage.
 
-## Getting Started
+## Prerequisites
 
-First things first, make sure you have your React Native environment set up. If not, check out the official docs.
-Note: please use node version v20.20.0 (npm v10.8.2)
+- Node.js v20.20.0 (npm v10.8.2)
+- React Native CLI
+- Xcode (for iOS)
+- Android Studio (for Android)
 
-### Installation
+## Installation
 
 First, install the base dependencies:
 
@@ -15,19 +17,19 @@ First, install the base dependencies:
 npm install
 ```
 
-Then add the required packages:
+Then install required packages:
 
 ```bash
-npm install @react-navigation/native @react-navigation/native-stack react-native-screens react-native-safe-area-context @react-native-async-storage/async-storage react-native-vector-icons
+npm install @react-navigation/native @react-navigation/native-stack react-native-screens react-native-safe-area-context @react-native-async-storage/async-storage react-native-vector-icons react-native-toast-message
 ```
 
-For iOS, install pods (make sure you're in the project root):
+For iOS, install pods:
 
 ```bash
 cd ios && pod install && cd ..
 ```
 
-If you get any errors, try cleaning and reinstalling:
+If you encounter errors, perform a clean installation:
 
 ```bash
 rm -rf node_modules package-lock.json
@@ -35,27 +37,20 @@ npm install
 cd ios && rm -rf Pods Podfile.lock && pod install && cd ..
 ```
 
-### Setting up Vector Icons
+## Vector Icons Setup
 
-For Android, add this to `android/app/build.gradle`:
+**Android:** Add this to `android/app/build.gradle`:
 
 ```gradle
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 ```
 
-For iOS, the pods should handle it automatically.
+**iOS:** Pods handle this automatically.
 
-### Running the App
-
-For iOS:
+## Running the App
 
 ```bash
 npm run ios
-```
-
-For Android:
-
-```bash
 npm run android
 ```
 
@@ -64,7 +59,9 @@ npm run android
 ```
 src/
 ├── components/
-│   └── Button.tsx
+│   ├── Button.tsx
+│   ├── Input.tsx
+│   └── AppHeader.tsx
 ├── constants/
 │   └── colors.ts
 ├── context/
@@ -75,40 +72,57 @@ src/
 │   ├── LoginScreen.tsx
 │   ├── SignupScreen.tsx
 │   └── HomeScreen.tsx
+├── utils/
+│   └── ToastService.ts
 ├── types.ts
 └── App.tsx
 ```
 
 ## Features
 
-- Clean, modern UI with smooth animations
-- Secure authentication flow
-- Form validation
-- Local storage for user data
+- User authentication with signup and login
+- Form validation with real-time error messages
+- Secure local storage using AsyncStorage
 - Password visibility toggle
-- Error handling with user-friendly messages
-- Responsive design
+- Toast notifications for user feedback
+- Responsive design with SafeAreaView
+- Clean, modern UI with custom components
+- TypeScript support
+- Navigation flow management
 
 ## How It Works
 
-The app uses AsyncStorage to store user credentials locally. When you sign up, your info gets saved. When you log in, it checks your credentials against what's stored. Super simple, but remember this is just for demo purposes - you'd want a real backend for production.
+The app uses AsyncStorage to persist user credentials locally. On signup, user data is stored. On login, credentials are validated against stored data. Authentication state is managed through React Context for global access.
 
 ## Tech Stack
 
 - React Native
 - TypeScript
-- React Navigation
+- React Navigation (Native Stack)
 - AsyncStorage
 - React Native Vector Icons
-
+- React Native Toast Message
 
 ## Troubleshooting
 
-If you run into issues:
+Clear Metro cache:
+```bash
+npm start -- --reset-cache
+```
 
-1. Clear Metro bundler cache: `npm start -- --reset-cache`
-2. Clean build folders for iOS: `cd ios && xcodebuild clean && cd ..`
-3. Clean build for Android: `cd android && ./gradlew clean && cd ..`
-4. Reinstall pods: `cd ios && rm -rf Pods Podfile.lock && pod install && cd ..`
-5. Full clean: `rm -rf node_modules package-lock.json && npm install`
+Clean iOS build:
+```bash
+cd ios && xcodebuild clean && cd ..
+```
 
+Clean Android build:
+```bash
+cd android && ./gradlew clean && cd ..
+```
+
+Full clean install:
+```bash
+rm -rf node_modules package-lock.json
+npm install
+cd ios && rm -rf Pods Podfile.lock && pod install && cd ..
+```
